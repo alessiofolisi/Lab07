@@ -23,8 +23,6 @@ public class Model {
 	public List<PowerOutages> getOutages(Nerc nerc_id){	
 		List<PowerOutages> outages = new ArrayList(podao.getOutages(nerc_id));
 		
-//		Collections.sort(outages , new Comparator());
-		
 		return outages;
 	}
 	
@@ -56,6 +54,7 @@ public class Model {
 		
 		long conta=0;
 		
+		if(parziale.size()==0) return true;
 		for(PowerOutages po : parziale) {
 			conta+=po.outageDuration;
 		}
@@ -68,6 +67,7 @@ public class Model {
 	public boolean isValidAnni(List<PowerOutages> parziale , int anni , PowerOutages p) {
 		PowerOutages vecchio = null;
 		
+		if(parziale.size()==0) return true;
 		if(vecchio==null) vecchio = parziale.get(0);
 		
 		for(PowerOutages po : parziale) {
